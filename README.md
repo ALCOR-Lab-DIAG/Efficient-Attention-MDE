@@ -46,13 +46,6 @@ you'll be guided through a series of prompts to configure:
 
 Training starts automatically after configuration. Training logs and checkpoints are saved within the mounted working directory.
 
-Example inside the container:
-
-```bash
-# Runs interactively with custom setup
-bash run_docker
-```
-
 ---
 
 ## 🧲 Evaluation
@@ -91,17 +84,15 @@ python automation.py --mode test
 
 ````bash
 python automation.py --mode analysis
-```bash
-python automation.py --model METER --dataset NYU --config meta_base --eval
 ````
 
 You can modify `automation.py` or pass parameters to evaluate different networks and optimization setups.
 
 ---
 
-## 📉 Entropy Analysis (Encoder/Decoder)
+## 📉 Entropy Analysis
 
-To run entropy-based analysis of attention modules, use the following `podman` command:
+To run entropy-based analysis of encoder modules, use the following `podman` command:
 
 ```bash
 podman run \
@@ -114,25 +105,6 @@ podman run \
 ```
 
 Replace `WORK_DIR` with the path to your local project and `DATA_DIR` with the path to your dataset.
-
----
-
-## 📁 Repository Structure
-
-* `automation.py` – Evaluation entry point
-* `enc_dec_analysis.py` – Attention entropy analysis
-* `models/` – Vision Transformer architectures (METER, PixelFormer, NeWCRFs)
-* `scripts/` – Training helpers and utilities
-* `docker/` – Environment configuration
-
----
-
-## 📜 License
-
-This work is licensed under the **Creative Commons Attribution 4.0 International License**.
-You are free to share and adapt the material for any purpose, even commercially, with proper attribution.
-
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 ---
 
