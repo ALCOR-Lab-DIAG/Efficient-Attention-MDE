@@ -1,0 +1,27 @@
+--rgb_img_res (3,192,256)
+--d_img_res (1,48,64)
+--do_prints
+--do_print_model
+--do_train
+--do_print_best_worst
+--dts_type nyu
+--architecture_type xxs
+--seed 42
+--lr 1e-3
+--lr_patience 15
+--epochs 50
+--batch_size 64
+--batch_size_eval 1
+--n_workers 2
+--e_stop_epochs 30
+--size_train None
+--size_test None
+--flip 0.5
+--mirror 0.5
+--color_and_bright 0.5
+--c_swap 0.5
+--random_crop 0.5
+--random_d_shift 0.5
+--network_type METER
+--dataset_root /work/data/ssd_datasets/
+--save_model_root /work/data/ssd_results/meter_nyu/

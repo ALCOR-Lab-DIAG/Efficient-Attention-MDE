@@ -1,0 +1,31 @@
+--mode test
+--model_name meter
+--rgb_img_res (3,192,256)
+--d_img_res (1,48,64)
+--pretrained_w work/data/ssd_pretrained/build_model_best_meta_nyu_xxs
+--do_prints
+--do_prints
+--do_print_model
+--do_pretrained
+--dts_type nyu
+--architecture_type xxs
+--seed 42
+--lr 1e-3
+--lr_patience 30
+--epochs 250
+--batch_size 64
+--batch_size_eval 1
+--n_workers 1
+--e_stop_epochs 150
+--size_train None
+--size_test None
+--flip 0.5
+--mirror 0.5
+--color_and_bright 0.5
+--c_swap 0.5
+--random_crop 0.5
+--random_d_shift 0.5
+--network_type meta_METER
+--dataset_root /work/data/ssd_datasets/
+--save_model_root /work/data/ssd_results/meter_meta_tiny_nyu/
+--checkpoint work/data/ssd_pretrained/checkpoints/meter_meta_tiny_nyu

@@ -1,0 +1,17 @@
+--mode compress
+--model_name newcrfs_kitti
+--encoder large07
+--dataset kitti
+--save_path /work/data/ssd_results/newcrfs_large_kitti/
+--input_height 352
+--input_width 1216
+--max_depth 80
+--do_kb_crop
+
+--data_path_eval work/data/ssd_datasets/kitti/kitti_train
+--gt_path_eval work/data/ssd_datasets/kitti/kitti_dataset
+--filenames_file_eval work/project/NeWCRFs/data_splits/eigen_test_files_with_gt.txt
+--min_depth_eval 1e-3
+--max_depth_eval 80
+--garg_crop
+--checkpoint_path work/data/ssd_pretrained/checkpoints/newcrfs_large_kitti
