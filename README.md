@@ -29,28 +29,73 @@ The main goal is to balance **prediction quality** and **inference speed** on re
 
 ---
 
-## 🐳 Docker Setup
+## 🏋️‍♂️ Training
 
-Build and launch the environment by running:
+All the training code runs inside a Docker/Podman container that can be built using the provided files in this repository. Launch the train via 
 
 ```bash
+./run_docker
+```
+you'll be guided through a series of prompts to configure:
+
+* Dataset selection (NYU or KITTI)
+* Network architecture (METER, PixelFormer, NeWCRFs)
+* Optimization type (Meta, Pyra, MoH)
+* Model size (Tiny, Base, Large)
+* Training parameters (epochs, batch size, learning rate)
+
+Training starts automatically after configuration. Training logs and checkpoints are saved within the mounted working directory.
+
+Example inside the container:
+
+```bash
+# Runs interactively with custom setup
 bash run_docker
 ```
-
-Follow the on-screen prompts to configure model, dataset path, and training options.
-This will start training inside the container using your local data and project code.
 
 ---
 
 ## 🧲 Evaluation
 
-Testing and evaluation are handled via:
+Evaluation is fully automated through the `automation.py` script, which handles configuration generation and test execution inside the Docker container.
+
+To launch the full suite of evaluations, use:
 
 ```bash
-automation.py
+python automation.py --mode test
 ```
 
-You can use this script within the container to automate evaluation across models and configurations.
+### 🛠 Modes
+
+* `--mode test`: full evaluation for all networks, sizes, datasets, and optimization configurations
+* `--mode analysis`: runs attention entropy analysis (only PixelFormer and NeWCRFs)
+* `--mode stats`: collects memory and performance statistics
+* `--mode compress`: for quantized/pruned variants (with `--extra p` or `--extra q`)
+
+### 🔁 Interactive Process
+
+The script will prompt you to select the network **size** (tiny/base/large). Based on this, it will execute a sequence of evaluations across:
+
+* Networks: METER, PixelFormer, NeWCRFs
+* Datasets: NYU, KITTI
+* Optimizations: none, meta, pyra, moh
+* Optimization locations: full, encoder, decoder (when applicable)
+
+### 🧪 Example: Full evaluation run
+
+```bash
+python automation.py --mode test
+```
+
+### 🧪 Example: Entropy analysis only
+
+````bash
+python automation.py --mode analysis
+```bash
+python automation.py --model METER --dataset NYU --config meta_base --eval
+````
+
+You can modify `automation.py` or pass parameters to evaluate different networks and optimization setups.
 
 ---
 
